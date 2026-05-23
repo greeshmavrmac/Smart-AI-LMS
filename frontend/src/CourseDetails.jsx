@@ -3,7 +3,7 @@ function CourseDetails() {
   const askAI = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/ai/ask",
+        "https://your-backend.onrender.com/api/ai/ask",  
         {
           question: `I completed ${course && course.title ? course.title : "this course"}.
 

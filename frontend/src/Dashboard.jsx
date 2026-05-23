@@ -82,7 +82,7 @@ const Dashboard = () => {
       try {
         const response =
           await fetch(
-            "http://localhost:5000/api/ai/ask",
+           "https://your-backend.onrender.com/api/ai/ask",
             {
               method:
                 "POST",

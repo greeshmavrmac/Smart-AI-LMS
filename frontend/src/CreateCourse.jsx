@@ -36,7 +36,7 @@ function CreateCourse() {
 
         const response =
           await axios.post(
-            "http://localhost:5000/api/course/create",
+            "https://your-backend.onrender.com/api/course/create",
             courseData
           );
 

@@ -36,7 +36,8 @@ function CreateCourse() {
 
         const response =
           await axios.post(
-            "https://your-backend.onrender.com/api/course/create",
+  "https://smart-ai-lms.onrender.com/api/courses/create",
+
             courseData
           );
 

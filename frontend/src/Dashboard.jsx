@@ -82,7 +82,7 @@ const Dashboard = () => {
       try {
         const response =
           await fetch(
-           "https://your-backend.onrender.com/api/ai/ask",
+            "https://smart-ai-lms.onrender.com/api/ai/ask",
             {
               method:
                 "POST",
@@ -117,6 +117,7 @@ const Dashboard = () => {
 
               text:
                 data.reply ||
+                data.answer ||
                 "No response from AI",
             },
           ]
@@ -323,7 +324,6 @@ const Dashboard = () => {
                         "relative",
                     }}
                   >
-                    {/* Copy Button */}
                     {msg.sender ===
                       "ai" && (
                       <button
@@ -389,51 +389,7 @@ const Dashboard = () => {
                           "Arial, sans-serif",
                       }}
                     >
-                      {msg.text
-                        ?.replace(
-                          /###\s?/g,
-                          ""
-                        )
-                        .replace(
-                          /\*\*/g,
-                          ""
-                        )
-                        .replace(
-                          /---/g,
-                          ""
-                        )
-                        .replace(
-                          /```html/g,
-                          ""
-                        )
-                        .replace(
-                          /```python/g,
-                          ""
-                        )
-                        .replace(
-                          /```javascript/g,
-                          ""
-                        )
-                        .replace(
-                          /```js/g,
-                          ""
-                        )
-                        .replace(
-                          /```css/g,
-                          ""
-                        )
-                        .replace(
-                          /```/g,
-                          ""
-                        )
-                        .replace(
-                          /✅/g,
-                          "• "
-                        )
-                        .replace(
-                          /🔹/g,
-                          "• "
-                        )}
+                      {msg.text}
                     </pre>
                   </div>
                 </div>

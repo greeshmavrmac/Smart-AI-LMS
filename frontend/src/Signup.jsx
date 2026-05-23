@@ -27,7 +27,8 @@ function Signup() {
 
         const response =
           await axios.post(
-"https://your-backend.onrender.com/api/auth/signup",
+  "https://smart-ai-lms.onrender.com/api/auth/signup",
+
             formData
           );
 

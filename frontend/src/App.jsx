@@ -9,6 +9,7 @@ import Signup from "./Signup";
 import Dashboard from "./Dashboard";
 import CreateCourse from "./CreateCourse";
 import CourseDetails from "./CourseDetails";
+import AIQuiz from "./pages/AIQuiz";
 
 function App() {
   return (
@@ -45,6 +46,13 @@ function App() {
         path="/course/:id"
         element={
           <CourseDetails />
+        }
+      />
+
+      <Route
+        path="/ai-quiz"
+        element={
+          <AIQuiz />
         }
       />
 

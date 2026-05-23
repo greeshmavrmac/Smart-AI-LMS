@@ -1,5 +1,7 @@
 const Course =
-  require("../models/Course");
+  require(
+    "../models/Course"
+  );
 
 const createCourse =
   async (req, res) => {
@@ -7,15 +9,13 @@ const createCourse =
 
       const {
         title,
-        description,
-        instructor,
+        courseUrl,
       } = req.body;
 
       const course =
         await Course.create({
           title,
-          description,
-          instructor,
+          courseUrl,
         });
 
       res.status(201).json({
@@ -25,14 +25,17 @@ const createCourse =
       });
 
     } catch (error) {
+
+      console.log(error);
+
       res.status(500).json({
         message:
-          "Course Creation Failed",
+          "Server Error",
       });
     }
   };
 
-const getCourses =
+const getAllCourses =
   async (req, res) => {
     try {
 
@@ -44,9 +47,10 @@ const getCourses =
       );
 
     } catch (error) {
+
       res.status(500).json({
         message:
-          "Failed to fetch courses",
+          "Server Error",
       });
     }
   };
@@ -65,15 +69,16 @@ const getCourseById =
       );
 
     } catch (error) {
+
       res.status(500).json({
         message:
-          "Course not found",
+          "Server Error",
       });
     }
   };
 
 module.exports = {
   createCourse,
-  getCourses,
+  getAllCourses,
   getCourseById,
 };

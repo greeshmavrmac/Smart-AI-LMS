@@ -1,68 +1,61 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import {
+  useState,
+} from "react";
+
 import axios from "axios";
 
+import {
+  useNavigate,
+} from "react-router-dom";
+
 function CreateCourse() {
-  const navigate = useNavigate();
 
-  useEffect(() => {
-    const token =
-      localStorage.getItem("token");
+  const navigate =
+    useNavigate();
 
-    if (!token) {
-      navigate("/login");
-    }
-  }, [navigate]);
-
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    navigate("/");
-  };
-
-  const [courseData, setCourseData] =
+  const [courseData,
+    setCourseData] =
     useState({
       title: "",
-      description: "",
-      instructor: "",
+      courseUrl: "",
     });
 
-  const handleChange = (e) => {
-    setCourseData({
-      ...courseData,
-      [e.target.name]:
-        e.target.value,
-    });
-  };
+  const handleChange =
+    (e) => {
+
+      setCourseData({
+        ...courseData,
+        [e.target.name]:
+          e.target.value,
+      });
+    };
 
   const handleCreateCourse =
     async () => {
       try {
-        const token =
-          localStorage.getItem(
-            "token"
-          );
 
         const response =
           await axios.post(
             "http://localhost:5000/api/course/create",
-            courseData,
-            {
-              headers: {
-                Authorization:
-                  `Bearer ${token}`,
-              },
-            }
+            courseData
           );
 
         alert(
           response.data.message
         );
 
+        navigate(
+          "/dashboard"
+        );
+
       } catch (error) {
+
         alert(
-          error.response?.data
-            ?.message ||
           "Course Creation Failed"
+        );
+
+        console.log(
+          error
         );
       }
     };
@@ -70,16 +63,7 @@ function CreateCourse() {
   return (
     <div className="min-h-screen flex justify-center items-center bg-gray-100">
 
-      <div className="bg-white p-8 rounded-lg shadow-lg w-96">
-
-        <div className="flex justify-end mb-4">
-          <button
-            onClick={handleLogout}
-            className="bg-red-500 text-white px-4 py-2 rounded"
-          >
-            Logout
-          </button>
-        </div>
+      <div className="bg-white p-8 rounded-lg shadow-lg w-[500px]">
 
         <h1 className="text-3xl font-bold text-center mb-6">
           Create Course
@@ -88,31 +72,28 @@ function CreateCourse() {
         <input
           type="text"
           name="title"
-          placeholder="Course Title"
+          placeholder="Course Name"
           className="w-full border p-3 rounded mb-4"
-          onChange={handleChange}
-        />
-
-        <textarea
-          name="description"
-          placeholder="Course Description"
-          className="w-full border p-3 rounded mb-4"
-          onChange={handleChange}
+          onChange={
+            handleChange
+          }
         />
 
         <input
           type="text"
-          name="instructor"
-          placeholder="Instructor Name"
+          name="courseUrl"
+          placeholder="Paste Video URL"
           className="w-full border p-3 rounded mb-4"
-          onChange={handleChange}
+          onChange={
+            handleChange
+          }
         />
 
         <button
           onClick={
             handleCreateCourse
           }
-          className="w-full bg-green-600 text-white p-3 rounded"
+          className="w-full bg-green-600 text-white p-3 rounded-lg"
         >
           Create Course
         </button>

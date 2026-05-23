@@ -1,16 +1,16 @@
 const express =
   require("express");
 
+const router =
+  express.Router();
+
 const {
   createCourse,
-  getCourses,
+  getAllCourses,
   getCourseById,
 } = require(
   "../controllers/courseController"
 );
-
-const router =
-  express.Router();
 
 router.post(
   "/create",
@@ -19,7 +19,7 @@ router.post(
 
 router.get(
   "/all",
-  getCourses
+  getAllCourses
 );
 
 router.get(

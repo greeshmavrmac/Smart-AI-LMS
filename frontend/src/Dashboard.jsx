@@ -1,133 +1,551 @@
-import {
-  useEffect,
+import React, {
   useState,
+  useRef,
+  useEffect,
 } from "react";
 
-import axios from "axios";
+const Dashboard = () => {
+  const [videoUrl, setVideoUrl] =
+    useState("");
 
-import {
-  useNavigate,
-} from "react-router-dom";
+  const [message, setMessage] =
+    useState("");
 
-function Dashboard() {
+  const [chat, setChat] =
+    useState([
+      {
+        sender: "ai",
+        text:
+          "Hi 👋 I am your AI Assistant. Ask me for course recommendations or doubts.",
+      },
+    ]);
 
-  const navigate =
-    useNavigate();
+  const [loading, setLoading] =
+    useState(false);
 
-  const [courses,
-    setCourses] =
-    useState([]);
+  const chatEndRef =
+    useRef(null);
 
   useEffect(() => {
-    fetchCourses();
-  }, []);
+    chatEndRef.current?.scrollIntoView(
+      {
+        behavior: "smooth",
+      }
+    );
+  }, [chat, loading]);
 
-  const fetchCourses =
+  // YouTube Embed
+  const getEmbedUrl = (
+    url
+  ) => {
+    if (!url) return "";
+
+    const regExp =
+      /(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&]+)/;
+
+    const match =
+      url.match(regExp);
+
+    if (match) {
+      return `https://www.youtube.com/embed/${match[1]}`;
+    }
+
+    return "";
+  };
+
+  // AI Send Message
+  const handleSend =
     async () => {
-      try {
+      if (
+        !message.trim()
+      )
+        return;
 
+      const userMessage =
+        message;
+
+      const updatedChat = [
+        ...chat,
+        {
+          sender: "user",
+          text:
+            userMessage,
+        },
+      ];
+
+      setChat(updatedChat);
+
+      setMessage("");
+
+      setLoading(true);
+
+      try {
         const response =
-          await axios.get(
-            "http://localhost:5000/api/course/all"
+          await fetch(
+            "http://localhost:5000/api/ai/ask",
+            {
+              method:
+                "POST",
+
+              headers: {
+                "Content-Type":
+                  "application/json",
+              },
+
+              body:
+                JSON.stringify(
+                  {
+                    message:
+                      userMessage,
+
+                    history:
+                      updatedChat,
+                  }
+                ),
+            }
           );
 
-        setCourses(
-          response.data
-        );
+        const data =
+          await response.json();
 
-      } catch (error) {
+        setChat(
+          (prev) => [
+            ...prev,
+            {
+              sender:
+                "ai",
+
+              text:
+                data.reply ||
+                "No response from AI",
+            },
+          ]
+        );
+      } catch (
+        error
+      ) {
         console.log(
           error
         );
+
+        setChat(
+          (prev) => [
+            ...prev,
+            {
+              sender:
+                "ai",
+
+              text:
+                "AI server not connected ❌",
+            },
+          ]
+        );
       }
-    };
 
-  const handleLogout =
-    () => {
-      localStorage.removeItem(
-        "token"
-      );
-
-      navigate("/");
+      setLoading(false);
     };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-8">
+    <div
+      style={{
+        minHeight:
+          "100vh",
 
-      <div className="flex justify-between items-center mb-8">
+        background:
+          "#f4f6f9",
 
-        <h1 className="text-4xl font-bold">
-          Dashboard
-        </h1>
+        padding:
+          "30px",
+      }}
+    >
+      <h1>
+        Dashboard
+      </h1>
 
-        <div>
+      <div
+        style={{
+          display:
+            "flex",
 
-          <button
-            onClick={() =>
-              navigate(
-                "/create-course"
+          gap:
+            "20px",
+
+          flexWrap:
+            "wrap",
+        }}
+      >
+        {/* Video Section */}
+        <div
+          style={{
+            flex: 2,
+
+            background:
+              "#fff",
+
+            padding:
+              "25px",
+
+            borderRadius:
+              "15px",
+          }}
+        >
+          <h2>
+            Add Course Video 🎥
+          </h2>
+
+          <input
+            type="text"
+            placeholder="Paste YouTube Link..."
+            value={
+              videoUrl
+            }
+            onChange={(
+              e
+            ) =>
+              setVideoUrl(
+                e.target
+                  .value
               )
             }
-            className="bg-green-600 text-white px-4 py-2 rounded mr-3"
-          >
-            Create Course
-          </button>
+            style={{
+              width:
+                "100%",
 
-          <button
-            onClick={
-              handleLogout
-            }
-            className="bg-red-500 text-white px-4 py-2 rounded"
-          >
-            Logout
-          </button>
+              padding:
+                "14px",
 
+              marginBottom:
+                "20px",
+            }}
+          />
+
+          {videoUrl && (
+            <iframe
+              width="100%"
+              height="420"
+              src={getEmbedUrl(
+                videoUrl
+              )}
+              title="Course Video"
+              allowFullScreen
+            />
+          )}
         </div>
-      </div>
 
-      <h2 className="text-2xl font-bold mb-4">
-        All Courses
-      </h2>
+        {/* AI Chat */}
+        <div
+          style={{
+            flex: 1,
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            background:
+              "#fff",
 
-        {courses.map(
-          (course) => (
+            padding:
+              "20px",
+
+            borderRadius:
+              "15px",
+
+            height:
+              "600px",
+
+            display:
+              "flex",
+
+            flexDirection:
+              "column",
+          }}
+        >
+          <h2>
+            AI Assistant 🤖
+          </h2>
+
+          {/* Chat */}
+          <div
+            style={{
+              flex: 1,
+
+              overflowY:
+                "auto",
+
+              marginTop:
+                "15px",
+            }}
+          >
+            {chat.map(
+              (
+                msg,
+                index
+              ) => (
+                <div
+                  key={index}
+                  style={{
+                    display:
+                      "flex",
+
+                    justifyContent:
+                      msg.sender ===
+                      "user"
+                        ? "flex-end"
+                        : "flex-start",
+
+                    marginBottom:
+                      "12px",
+                  }}
+                >
+                  <div
+                    style={{
+                      background:
+                        msg.sender ===
+                        "user"
+                          ? "#2563eb"
+                          : "#e5e7eb",
+
+                      color:
+                        msg.sender ===
+                        "user"
+                          ? "#fff"
+                          : "#000",
+
+                      padding:
+                        "10px 14px",
+
+                      borderRadius:
+                        "12px",
+
+                      maxWidth:
+                        "80%",
+
+                      lineHeight:
+                        "1.8",
+
+                      position:
+                        "relative",
+                    }}
+                  >
+                    {/* Copy Button */}
+                    {msg.sender ===
+                      "ai" && (
+                      <button
+                        onClick={() =>
+                          navigator.clipboard.writeText(
+                            msg.text
+                          )
+                        }
+                        style={{
+                          position:
+                            "absolute",
+
+                          top:
+                            "10px",
+
+                          right:
+                            "10px",
+
+                          background:
+                            "#2563eb",
+
+                          color:
+                            "#fff",
+
+                          border:
+                            "none",
+
+                          padding:
+                            "6px 10px",
+
+                          borderRadius:
+                            "6px",
+
+                          cursor:
+                            "pointer",
+
+                          fontSize:
+                            "12px",
+                        }}
+                      >
+                        Copy
+                      </button>
+                    )}
+
+                    <pre
+                      style={{
+                        whiteSpace:
+                          "pre-wrap",
+
+                        lineHeight:
+                          "1.9",
+
+                        fontSize:
+                          "15px",
+
+                        wordBreak:
+                          "break-word",
+
+                        margin:
+                          0,
+
+                        fontFamily:
+                          "Arial, sans-serif",
+                      }}
+                    >
+                      {msg.text
+                        ?.replace(
+                          /###\s?/g,
+                          ""
+                        )
+                        .replace(
+                          /\*\*/g,
+                          ""
+                        )
+                        .replace(
+                          /---/g,
+                          ""
+                        )
+                        .replace(
+                          /```html/g,
+                          ""
+                        )
+                        .replace(
+                          /```python/g,
+                          ""
+                        )
+                        .replace(
+                          /```javascript/g,
+                          ""
+                        )
+                        .replace(
+                          /```js/g,
+                          ""
+                        )
+                        .replace(
+                          /```css/g,
+                          ""
+                        )
+                        .replace(
+                          /```/g,
+                          ""
+                        )
+                        .replace(
+                          /✅/g,
+                          "• "
+                        )
+                        .replace(
+                          /🔹/g,
+                          "• "
+                        )}
+                    </pre>
+                  </div>
+                </div>
+              )
+            )}
+
+            {loading && (
+              <div
+                style={{
+                  display:
+                    "flex",
+
+                  justifyContent:
+                    "flex-start",
+
+                  marginBottom:
+                    "12px",
+                }}
+              >
+                <div
+                  style={{
+                    background:
+                      "#e5e7eb",
+
+                    padding:
+                      "10px 14px",
+
+                    borderRadius:
+                      "12px",
+                  }}
+                >
+                  AI is typing...
+                </div>
+              </div>
+            )}
+
             <div
-              key={course._id}
-              onClick={() =>
-                navigate(
-                  `/course/${course._id}`
+              ref={
+                chatEndRef
+              }
+            />
+          </div>
+
+          {/* Input */}
+          <div
+            style={{
+              display:
+                "flex",
+
+              gap:
+                "10px",
+            }}
+          >
+            <input
+              type="text"
+              placeholder="Ask AI..."
+              value={
+                message
+              }
+              onChange={(
+                e
+              ) =>
+                setMessage(
+                  e.target
+                    .value
                 )
               }
-              className="bg-white p-5 rounded-lg shadow-lg cursor-pointer hover:shadow-xl"
+              onKeyDown={(
+                e
+              ) => {
+                if (
+                  e.key ===
+                  "Enter"
+                ) {
+                  handleSend();
+                }
+              }}
+              style={{
+                flex: 1,
+                padding:
+                  "12px",
+              }}
+            />
+
+            <button
+              onClick={
+                handleSend
+              }
+              style={{
+                background:
+                  "#2563eb",
+
+                color:
+                  "#fff",
+
+                border:
+                  "none",
+
+                padding:
+                  "12px 18px",
+
+                cursor:
+                  "pointer",
+              }}
             >
-
-              <h3 className="text-xl font-bold">
-                {course.title}
-              </h3>
-
-              <p className="mt-2 text-gray-600">
-                {
-                  course.description
-                }
-              </p>
-
-              <p className="mt-3 font-semibold">
-                Instructor:
-                {" "}
-                {
-                  course.instructor
-                }
-              </p>
-
-            </div>
-          )
-        )}
-
+              Send
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
-}
+};
 
 export default Dashboard;

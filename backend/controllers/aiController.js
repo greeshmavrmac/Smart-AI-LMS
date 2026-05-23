@@ -6,7 +6,6 @@ const chatWithAI =
     req,
     res
   ) => {
-
     try {
 
       const message =
@@ -223,7 +222,7 @@ Move learning step by step.
                 "application/json",
 
               "HTTP-Referer":
-                "http://localhost:5173",
+                "https://smart-ai-lms.vercel.app",
 
               "X-Title":
                 "AI LMS",

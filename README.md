@@ -1,6 +1,6 @@
 # 🤖 Smart AI LMS – AI Powered Learning Management System
 
-Smart AI LMS is an educational platform that integrates course management, AI-assisted learning, and intelligent quiz generation. Built with **React.js**, **Node.js**, **Express.js**, and **MongoDB**.
+An educational platform that integrates course management, AI-assisted learning, and intelligent quiz generation. Built with **React.js**, **Node.js**, **Express.js**, and **MongoDB**.
 
 ---
 
@@ -124,14 +124,3 @@ AI_API_KEY=your_api_key
 ## 📄 License
 
 MIT License - see LICENSE file for details
-
----
-
-## 📞 Support
-
-- **Issues**: [GitHub Issues](https://github.com/greeshmavrmac/Smart-AI-LMS/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/greeshmavrmac/Smart-AI-LMS/discussions)
-
----
-
-⭐ **If you found this helpful, please star the repository!** ⭐

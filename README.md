@@ -156,18 +156,6 @@ npm start
 
 ### 🛤️ Personalized Learning Paths
 
-### 🎙️ Voice-Based Learning Assistant
-
----
-
-# 👩‍💻 Author
-
-**Veeramachineni Likhitha**
-
-B.Tech Computer Science & Engineering
-
-Machine Learning Enthusiast
-
 ---
 
 # ⭐ Project Highlights

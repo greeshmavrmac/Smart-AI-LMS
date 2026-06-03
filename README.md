@@ -1,43 +1,16 @@
 # 🤖 Smart AI LMS – AI Powered Learning Management System
 
-Smart AI LMS is a cutting-edge educational platform that seamlessly integrates course management, AI-assisted learning, and intelligent quiz generation. Designed for modern learners, it provides a comprehensive, responsive learning experience across all devices.
-
-Built with a robust Full-Stack architecture using **React.js**, **Node.js**, **Express.js**, and **MongoDB**, Smart AI LMS delivers a scalable, high-performance solution for educational institutions and learners worldwide.
+Smart AI LMS is an educational platform that integrates course management, AI-assisted learning, and intelligent quiz generation. Built with **React.js**, **Node.js**, **Express.js**, and **MongoDB**.
 
 ---
 
-## 🚀 Key Features & Capabilities
+## 🚀 Key Features
 
-### 📚 Intelligent Course Management
-- 📹 Add and manage course videos via YouTube integration
-- 📖 Centralized learning resource hub
-- 🔍 Quick access to educational content
-- 📋 Organized course categorization
-
-### 🤖 AI-Powered Learning Assistant
-- 💡 Personalized learning guidance and support
-- ❓ Real-time query resolution
-- 📚 Smart resource recommendations
-- 🎯 Contextual learning suggestions
-
-### 📝 Smart Quiz Generation Engine
-- ✨ Dynamic quiz creation with AI algorithms
-- 🎓 Multi-subject support
-- 📊 Difficulty-level customization
-- ⏱️ Built-in countdown timer
-- 📈 Performance analytics
-
-### 🔐 Secure Authentication & Authorization
-- 👤 User Registration & Profile Management
-- 🔒 Industry-Standard Login Security
-- 👥 Role-Based Access Control (RBAC)
-- 🛡️ JWT Token-Based Authentication
-
-### 📱 Responsive & Modern UI/UX
-- 📲 Mobile-first responsive design
-- 🎨 Intuitive user dashboard
-- ⚡ Optimized performance
-- 🌓 Seamless user experience
+- **📚 Course Management** - YouTube video integration and organized learning resources
+- **🤖 AI Learning Assistant** - Real-time Q&A and personalized guidance
+- **📝 Smart Quiz Generation** - Dynamic AI-powered quizzes with difficulty levels
+- **🔐 Secure Authentication** - JWT-based user authentication & role-based access
+- **📱 Responsive Design** - Mobile-friendly interface
 
 ---
 
@@ -45,31 +18,17 @@ Built with a robust Full-Stack architecture using **React.js**, **Node.js**, **E
 
 ```
 Smart-AI-LMS/
-│
-├── frontend/
+├── frontend/          # React + Vite
 │   ├── src/
-│   │   ├── components/          # Reusable React components
-│   │   ├── pages/               # Page-level components
-│   │   ├── services/            # API communication services
-│   │   ├── styles/              # Global & component styles
-│   │   ├── App.jsx
-│   │   └── main.jsx
-│   ├── public/
-│   ├── package.json
-│   └── vite.config.js
-│
-├── backend/
-│   ├── routes/                  # API endpoint definitions
-│   ├── controllers/             # Business logic handlers
-│   ├── models/                  # MongoDB schemas
-│   ├── middleware/              # Authentication & validation
-│   ├── config/                  # Configuration files
-│   ├── server.js
+│   │   ├── components/
+│   │   ├── pages/
+│   │   └── services/
 │   └── package.json
-│
-├── database/
-│   └── MongoDB schemas & migrations
-│
+├── backend/           # Node + Express
+│   ├── routes/
+│   ├── controllers/
+│   ├── models/
+│   └── package.json
 └── README.md
 ```
 
@@ -77,249 +36,102 @@ Smart-AI-LMS/
 
 ## 🛠️ Tech Stack
 
-### 🎨 Frontend Technologies
-| Technology | Purpose |
-|-----------|---------|
-| **React.js** | UI library & component framework |
-| **JavaScript** | Core language |
-| **HTML5** | Markup |
-| **CSS3** | Styling & animations |
-| **Vite** | Build tool & dev server |
-| **Axios** | HTTP client |
-
-### ⚙️ Backend Technologies
-| Technology | Purpose |
-|-----------|---------|
-| **Node.js** | Runtime environment |
-| **Express.js** | Web framework |
-| **JWT** | Authentication |
-| **Bcrypt** | Password hashing |
-
-### 🗄️ Database
-- **MongoDB** - NoSQL database for flexible data modeling
-
-### ☁️ Deployment
-- **Vercel** - Frontend hosting & deployment
-- **Render/Railway** - Backend deployment (recommended)
+| Frontend | Backend | Database | Deployment |
+|----------|---------|----------|-----------|
+| React.js | Node.js | MongoDB | Vercel / Render |
+| Vite | Express.js | - | - |
+| Axios | JWT + Bcrypt | - | - |
 
 ---
 
-## 🎯 Core Features & Modules
+## 📱 Core Modules
 
-| Feature | Status | Description |
-|---------|--------|-------------|
-| 📚 Course Video Management | ✅ Implemented | YouTube integration for video hosting |
-| 🤖 AI Learning Assistant | ✅ Implemented | Interactive AI support system |
-| 📝 Quiz Generation | ✅ Implemented | Automated quiz creation engine |
-| 🔐 Authentication | ✅ Implemented | Secure user authentication |
-| 📊 Dashboard | ✅ Implemented | Centralized user workspace |
-| 📱 Responsive Design | ✅ Implemented | Mobile & tablet optimization |
-
----
-
-## 📱 Application Modules
-
-### 🏠 **Home Page**
-- Platform overview and key features
-- Call-to-action for registration
-- Navigation to main modules
-
-### 📊 **Student Dashboard**
-- Course enrollment status
-- Learning progress tracking
-- Quick access to quizzes & assistant
-- Performance statistics
-
-### 🤖 **AI Learning Assistant**
-- Real-time chat interface
-- Context-aware responses
-- Resource recommendations
-- Learning tips & guidance
-
-### 📝 **AI Quiz Module**
-- Subject selection
-- Difficulty level customization
-- Timed quiz experience
-- Instant result & feedback
-- Score tracking & analytics
-
-### 🔑 **Authentication Module**
-- User registration
-- Secure login
-- Password reset
-- Profile management
+1. **Home Page** - Platform overview
+2. **Student Dashboard** - Progress tracking & course access
+3. **AI Assistant** - Real-time chat support
+4. **Quiz Module** - Timed quizzes with instant results
+5. **Authentication** - Secure login & registration
 
 ---
 
 ## ⚙️ Installation & Setup
 
-### 📋 Prerequisites
-- **Node.js** v18 or higher
-- **npm** or **yarn**
-- **MongoDB** (local or Atlas cloud)
+### Prerequisites
+- Node.js v18+
+- npm or yarn
+- MongoDB
 
-### 🔧 Installation Steps
+### Quick Start
 
-#### 1. Clone Repository
 ```bash
+# Clone & setup
 git clone https://github.com/greeshmavrmac/Smart-AI-LMS.git
 cd Smart-AI-LMS
-```
 
-#### 2. Setup Frontend
-```bash
+# Frontend setup
 cd frontend
 npm install
-```
+npm run dev
 
-#### 3. Setup Backend
-```bash
-cd ../backend
-npm install
-```
-
-#### 4. Configure Environment Variables
-Create `.env` file in backend directory:
-```env
-PORT=5000
-MONGODB_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret_key
-AI_API_KEY=your_ai_api_key
-```
-
-### 🚀 Running the Application
-
-#### Start Backend Server
-```bash
+# Backend setup (new terminal)
 cd backend
+npm install
 npm start
 ```
 
-#### Start Frontend Development Server
-```bash
-cd frontend
-npm run dev
-```
-
-#### Build for Production
-```bash
-npm run build
+### Environment Variables (Backend)
+```env
+PORT=5000
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_secret_key
+AI_API_KEY=your_api_key
 ```
 
 ---
 
-## 📊 API Documentation
+## 📊 API Endpoints
 
-### Authentication Endpoints
-- `POST /api/auth/register` - User registration
-- `POST /api/auth/login` - User login
-- `POST /api/auth/logout` - User logout
-
-### Course Endpoints
-- `GET /api/courses` - Get all courses
-- `POST /api/courses` - Create new course
-- `GET /api/courses/:id` - Get course details
-
-### Quiz Endpoints
-- `GET /api/quizzes` - Get all quizzes
-- `POST /api/quizzes/generate` - Generate AI quiz
-- `POST /api/quizzes/:id/submit` - Submit quiz
-
-### AI Assistant
-- `POST /api/ai/chat` - Send message to AI
+| Endpoint | Method | Purpose |
+|----------|--------|---------|
+| `/api/auth/register` | POST | User registration |
+| `/api/auth/login` | POST | User login |
+| `/api/courses` | GET | Fetch all courses |
+| `/api/quizzes/generate` | POST | Generate AI quiz |
+| `/api/ai/chat` | POST | AI chat |
 
 ---
 
 ## 🔮 Future Enhancements
 
-### 📈 **Learning Analytics Dashboard**
-- Detailed progress tracking
-- Performance insights
-- Learning pattern analysis
-
-### 🎓 **Certificate Generation**
-- Digital certificates on course completion
-- Certificate verification system
-- Blockchain integration (planned)
-
-### 🏆 **Gamification System**
-- Points & badges system
-- Leaderboards
-- Achievement milestones
-- Streak tracking
-
-### 🛤️ **Personalized Learning Paths**
-- AI-driven course recommendations
-- Custom learning sequences
-- Adaptive difficulty levels
-
-### 🎙️ **Voice-Based Learning**
-- Voice-to-text quiz input
-- Audio course materials
-- Voice assistant integration
-
-### 🌍 **Internationalization**
+- Learning analytics dashboard
+- Digital certificates
+- Gamification (points, badges, leaderboards)
+- Voice-based learning
 - Multi-language support
-- Regional content customization
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please follow these steps:
-
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
 ---
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+MIT License - see LICENSE file for details
 
 ---
 
-## 👩‍💻 Author
+## 📞 Support
 
-**Veeramachineni Likhitha**
-- 🎓 B.Tech Computer Science & Engineering
-- 🤖 Machine Learning Enthusiast
-- 💻 Full-Stack Developer
-- 📧 [Contact](mailto:your-email@example.com)
-- 🔗 [GitHub](https://github.com/greeshmavrmac)
-- 💼 [LinkedIn](https://linkedin.com/in/your-profile)
+- **Issues**: [GitHub Issues](https://github.com/greeshmavrmac/Smart-AI-LMS/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/greeshmavrmac/Smart-AI-LMS/discussions)
 
 ---
-
-## ⭐ Project Highlights
-
-✨ **AI-Powered Learning Platform** - Intelligent educational experience
-
-✨ **Smart Quiz Generation** - Dynamic, adaptive assessment system
-
-✨ **Interactive AI Assistant** - 24/7 learning support
-
-✨ **Full-Stack Web Application** - Modern architecture & best practices
-
-✨ **Responsive UI/UX** - Seamless experience across devices
-
-✨ **Real-World EdTech Solution** - Production-ready platform
-
-✨ **Scalable Architecture** - Ready for growth & enterprise use
-
----
-
-## 📞 Support & Feedback
-
-For issues, bug reports, or feature requests, please open an [GitHub Issue](https://github.com/greeshmavrmac/Smart-AI-LMS/issues).
-
-Have questions? Create a [GitHub Discussion](https://github.com/greeshmavrmac/Smart-AI-LMS/discussions).
-
----
-
-**Made with ❤️ by Veeramachineni Likhitha**
 
 ⭐ **If you found this helpful, please star the repository!** ⭐

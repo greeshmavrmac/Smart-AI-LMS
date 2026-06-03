@@ -124,3 +124,7 @@ AI_API_KEY=your_api_key
 ## 📄 License
 
 MIT License - see LICENSE file for details
+
+---
+
+⭐ **If you found this helpful, please star the repository!** ⭐
